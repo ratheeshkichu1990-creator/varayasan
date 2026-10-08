@@ -1,0 +1,326 @@
+/*
+ * Desktop stage = the Figma Home collage (1482 × 2362 below the lettering).
+ * The artwork box sits at x 255, y 36 and is 943 × 2262 — all as percentages.
+ */
+.pa {
+  --mx: 0;
+  --my: 0;
+  --sy: 0;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1482 / 2362;
+}
+
+.pa__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: fade 1s var(--ease) both;
+}
+
+.pa__field {
+  position: absolute;
+  left: 17.206%; /* 255 / 1482 */
+  top: 1.524%; /* 36 / 2362 */
+  width: 63.63%; /* 943 / 1482 */
+  aspect-ratio: 943 / 2262;
+}
+
+/* ---------- Artwork ---------- */
+.pa__art-par {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(calc(var(--mx) * -9px), calc(var(--my) * -9px + var(--sy) * 0.06px), 0);
+  will-change: transform;
+}
+
+.pa__art-enter {
+  position: absolute;
+  inset: 0;
+  animation: pa-enter 1.6s var(--ease-premium) 0.45s both;
+}
+
+.pa__art-float {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 40%;
+  animation: pa-float 11s ease-in-out 2s infinite;
+  will-change: transform;
+}
+
+.pa__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Wind: the outer hair band is redrawn on top with a gentle displacement
+   filter. The band sits on the page colour so it fully covers the original
+   underneath, and its feathered mask cross-fades back into the untouched core. */
+.pa__hair {
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg);
+  -webkit-mask: var(--mask-hair) center / 100% 100% no-repeat;
+  mask: var(--mask-hair) center / 100% 100% no-repeat;
+}
+
+.pa__img--hair {
+  filter: url(#pa-wind);
+}
+
+/* Black circle behind the head: a faint light breathes inside the solid black only. */
+.pa__circle {
+  position: absolute;
+  left: 8.908%; /* 84 / 943 */
+  top: 6.278%; /* 142 / 2262 */
+  width: 73.277%; /* 691 / 943 */
+  height: 35.544%; /* 804 / 2262 */
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask: var(--mask-circle) center / 100% 100% no-repeat;
+  mask: var(--mask-circle) center / 100% 100% no-repeat;
+}
+
+.pa__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 58% 52% at 54% 46%, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0) 70%);
+  opacity: 0;
+  animation: pa-breathe 8s ease-in-out 2.2s infinite;
+  will-change: transform, opacity;
+}
+
+.pa__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ---------- Orange dots ---------- */
+.pa__dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pa__dot-par {
+  position: absolute;
+  left: calc(var(--x) * 100%);
+  top: calc(var(--y) * 100%);
+  width: calc(var(--s) * 100%);
+  aspect-ratio: 1;
+  margin: calc(var(--s) * -50%) 0 0 calc(var(--s) * -50%); /* centre on x/y */
+  transform: translate3d(
+    calc(var(--mx) * var(--depth) * -1px),
+    calc(var(--my) * var(--depth) * -1px + var(--sy) * var(--scroll) * -1px),
+    0
+  );
+  will-change: transform;
+}
+
+.pa__dot-in {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: pa-dot-in 0.9s var(--ease-premium) var(--delay) both;
+}
+
+.pa__dot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: var(--anim) var(--dur) ease-in-out var(--phase) infinite;
+}
+
+.pa__dot--rise {
+  --anim: pa-rise;
+}
+
+.pa__dot--sink {
+  --anim: pa-sink;
+}
+
+.pa__dot--pulse {
+  --anim: pa-pulse;
+}
+
+.pa__dot--glow {
+  --anim: pa-glow;
+}
+
+.pa__dot--drift {
+  --anim: pa-drift;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes pa-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pa-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(0, -4px, 0) scale(1.0075) rotate(-0.3deg);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0) scale(1.015) rotate(0deg);
+  }
+  75% {
+    transform: translate3d(0, -4px, 0) scale(1.0075) rotate(0.3deg);
+  }
+}
+
+@keyframes pa-breathe {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+@keyframes pa-dot-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pa-rise {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -15px, 0);
+  }
+}
+
+@keyframes pa-sink {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 10px, 0);
+  }
+}
+
+@keyframes pa-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+@keyframes pa-glow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pa-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  33% {
+    transform: translate3d(6px, -8px, 0);
+  }
+  66% {
+    transform: translate3d(-4px, -3px, 0);
+  }
+}
+
+/* ---------- Tablet & mobile: artwork alone, centred, full composition ---------- */
+@media (max-width: 767px) {
+  .pa {
+    aspect-ratio: auto;
+    padding: 0 6%;
+  }
+
+  .pa__bg {
+    display: none;
+  }
+
+  .pa__field {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+  }
+
+  .pa__dot-par {
+    left: calc(var(--xm) * 100%);
+  }
+
+  .pa__art-float {
+    animation-name: pa-float-soft;
+  }
+
+  @keyframes pa-float-soft {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate3d(0, -3px, 0) rotate(-0.25deg);
+    }
+    50% {
+      transform: translate3d(0, -6px, 0) rotate(0deg);
+    }
+    75% {
+      transform: translate3d(0, -3px, 0) rotate(0.25deg);
+    }
+  }
+}
+
+/* ---------- Reduced motion: no loops, no parallax, just a gentle fade ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .pa__art-par,
+  .pa__dot-par {
+    transform: none;
+  }
+
+  .pa__art-float,
+  .pa__glow,
+  .pa__dot {
+    animation: none !important;
+  }
+
+  .pa__art-enter,
+  .pa__dot-in {
+    animation: fade 0.8s ease both !important;
+  }
+}

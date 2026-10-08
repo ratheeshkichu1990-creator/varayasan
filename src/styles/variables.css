@@ -1,0 +1,26 @@
+/* Design tokens from the VARAYASAN Figma file (desktop frames are 1792px wide). */
+:root {
+  /* Colour */
+  --color-bg: #fafafa; /* page canvas (Home, About) */
+  --color-bg-gallery: #f5f7f8; /* Work / Gallery canvas */
+  --color-surface: #ffffff; /* sidebar, mobile top bar */
+  --color-ink: #1d1c1c; /* headings, active nav, chips */
+  --color-text: #424448; /* nav, body copy */
+  --color-on-ink: #fafafa;
+  --color-accent: #ed451a; /* active underline, mobile chip, ink dots */
+  --color-eyebrow: #e65736; /* "A little of my story" */
+  --color-border: #c0c0c0; /* chip outline */
+  --color-divider: rgba(192, 192, 192, 0.6);
+
+  /* Type */
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Arima", "IBM Plex Sans", serif;
+
+  /* Layout */
+  --sidebar-w: clamp(240px, 17.3vw, 310px);
+  --topbar-h: 56px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 0.4s;
+}

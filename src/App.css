@@ -1,0 +1,23 @@
+/* Main column sits to the right of the fixed sidebar (desktop) or under the top bar. */
+.main {
+  container-type: inline-size;
+  min-height: 100vh;
+  margin-left: var(--sidebar-w);
+  background: var(--color-bg);
+  animation: fade 0.5s var(--ease) both;
+}
+
+.main--gallery {
+  background: var(--color-bg-gallery);
+}
+
+@media (max-width: 1023px) {
+  .main {
+    min-height: calc(100vh - var(--topbar-h));
+    margin-left: 0;
+  }
+}
+
+.main:focus {
+  outline: none;
+}

@@ -1,0 +1,154 @@
+/* Figma desktop "Work": chips centred at 64px, 40px to the count, 32px to the grid. */
+.gallery {
+  padding: 64px clamp(24px, 4cqw, 64px) 120px;
+}
+
+/* ---------- Filter chips ---------- */
+.chips {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  animation: rise 0.6s var(--ease) both;
+}
+
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 43px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 32px;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--color-ink);
+}
+
+.chip.is-active {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  font-weight: 600;
+}
+
+/* ---------- Count + grid ---------- */
+.gallery__body {
+  max-width: 1268px; /* 3 × 396 + 2 × 40 */
+  margin: 40px auto 0;
+}
+
+.gallery__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding: 0 4px;
+}
+
+.gallery__count {
+  color: var(--color-ink);
+  font-size: 14px;
+  line-height: 1.15;
+}
+
+.view-toggle {
+  display: none;
+}
+
+.gallery__empty {
+  padding: 80px 0;
+  color: var(--color-text);
+  text-align: center;
+}
+
+@media (max-width: 1279px) {
+  .chips {
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------- Figma mobile ---------- */
+@media (max-width: 767px) {
+  .gallery {
+    padding: 32px 0 64px;
+  }
+
+  .chips {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 0 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-padding: 0 20px;
+  }
+
+  .chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .chip.is-active {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .gallery__body {
+    margin-top: 32px;
+    padding: 0 20px;
+  }
+
+  .gallery__bar {
+    margin-bottom: 24px;
+    padding: 0;
+  }
+
+  .view-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  .view-toggle button {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #8b8d90;
+    cursor: pointer;
+    transition: color var(--dur) var(--ease);
+  }
+
+  .view-toggle button:first-child {
+    border-right: 1px solid var(--color-divider);
+  }
+
+  .view-toggle button[aria-pressed="true"] {
+    color: var(--color-ink);
+  }
+
+  .view-toggle svg {
+    width: 26px;
+    height: 26px;
+  }
+}

@@ -1,0 +1,137 @@
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-columns: 72px 1fr 72px;
+  align-items: center;
+  background: rgba(8, 8, 8, 0.95);
+  color: #fff;
+  animation: lb-fade 0.3s var(--ease) both;
+}
+
+.lightbox__figure {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-width: 0;
+  animation: lb-zoom 0.4s var(--ease) both;
+}
+
+.lightbox__figure img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 150px);
+  max-height: calc(100dvh - 150px);
+  object-fit: contain;
+}
+
+.lightbox__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 14px;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.lightbox__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.lightbox__subtitle,
+.lightbox__count {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.lightbox__btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.lightbox__btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lightbox__btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.lightbox__prev {
+  grid-column: 1;
+  justify-self: center;
+}
+
+.lightbox__next {
+  grid-column: 3;
+  justify-self: center;
+}
+
+@keyframes lb-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lb-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@media (max-width: 767px) {
+  .lightbox {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    padding: 72px 12px 20px;
+    gap: 16px 0;
+  }
+
+  .lightbox__figure {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .lightbox__figure img {
+    max-height: calc(100dvh - 220px);
+  }
+
+  .lightbox__prev,
+  .lightbox__next {
+    grid-row: 2;
+  }
+
+  .lightbox__close {
+    top: 14px;
+    right: 14px;
+  }
+}

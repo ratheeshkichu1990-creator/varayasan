@@ -1,0 +1,46 @@
+/*
+ * Figma desktop (main column 1482px): lettering block 653px wide, centred,
+ * top at 128px; the artwork stage starts directly beneath it.
+ * Expressed in cqw (main-column width) so the composition holds at every width.
+ */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8.64cqw;
+  overflow: hidden;
+}
+
+.home__lettering {
+  --lettering-w: 44.06cqw;
+  position: relative;
+  z-index: 1;
+}
+
+.home__art {
+  width: 100%;
+  margin-top: 0.3cqw;
+}
+
+/* Figma mobile: lettering inset 40px inside 20px gutters, artwork centred below */
+@media (max-width: 767px) {
+  .home {
+    align-items: stretch;
+    padding: 56px 20px 56px;
+  }
+
+  .home__lettering {
+    --lettering-w: 270px;
+    margin-left: 40px;
+  }
+
+  .home__art {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 359px) {
+  .home__lettering {
+    margin-left: 12px;
+  }
+}

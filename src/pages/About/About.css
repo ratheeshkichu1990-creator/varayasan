@@ -1,0 +1,116 @@
+/*
+ * Figma desktop (main column 1482px): content inset 197px; eyebrow at y=222,
+ * lettering at y=325, story text (Arima Medium 22/1.6, 927px) from y=638.
+ * The ink-doodle collage climbs the right edge beside the text and runs along
+ * the bottom; it starts 627px above the end of the text.
+ */
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.about__content {
+  position: relative;
+  z-index: 1;
+  padding: 15cqw 4cqw 0 13.3cqw;
+}
+
+.about__eyebrow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--color-eyebrow);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: rise 0.7s var(--ease) both;
+}
+
+.about__eyebrow::after {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background: var(--color-text);
+}
+
+.about__lettering {
+  --lettering-w: 44.06cqw;
+  margin-top: 4.7cqw;
+}
+
+.about__text {
+  max-width: min(927px, 62.6cqw);
+  margin-top: 6.8cqw;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.6;
+  animation: rise 0.9s var(--ease) 0.25s both;
+}
+
+.about__text p + p {
+  margin-top: 1.6em;
+}
+
+.about__lead strong {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.about__art {
+  display: block;
+  width: 100%;
+  margin-top: -42.3cqw;
+  animation: fade 1.2s var(--ease) 0.35s both;
+}
+
+.about__art img {
+  width: 100%;
+}
+
+@media (max-width: 1279px) {
+  .about__text {
+    font-size: 20px;
+  }
+}
+
+/* Figma mobile */
+@media (max-width: 767px) {
+  .about__content {
+    padding: 32px 20px 0;
+  }
+
+  .about__lettering {
+    --lettering-w: 270px;
+    margin-top: 48px;
+  }
+
+  .about__text {
+    max-width: none;
+    margin-top: 48px;
+    font-family: var(--font-sans);
+  }
+
+  .about__lead {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  .about__body {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .about__text p + p {
+    margin-top: 48px;
+  }
+
+  .about__art {
+    margin-top: 72px;
+  }
+}

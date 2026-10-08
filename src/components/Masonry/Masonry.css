@@ -1,0 +1,30 @@
+/* Figma desktop: 3 × 396px columns (388 + 4px padding), 40px apart, 48px between rows. */
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+.masonry__col {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 0 4px;
+}
+
+.masonry__item {
+  animation: rise 0.7s var(--ease) var(--delay, 0ms) both;
+}
+
+/* Figma mobile: 16px gutters both ways */
+@media (max-width: 767px) {
+  .masonry {
+    gap: 16px;
+  }
+
+  .masonry__col {
+    gap: 16px;
+    padding: 0;
+  }
+}

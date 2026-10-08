@@ -1,0 +1,38 @@
+/*
+ * Desktop: "Varayasan" is 653px wide at 140px (Figma). --lettering-w sets that width;
+ * "Hi, I am" (32px) is 100/653 of it and sits 22/653 above.
+ */
+.lettering {
+  --lettering-w: 653px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: var(--lettering-w);
+  max-width: 100%;
+}
+
+.lettering__hi {
+  width: calc(var(--lettering-w) * 100 / 653);
+  animation: rise 0.8s var(--ease) 0.05s both;
+}
+
+.lettering__name {
+  width: 100%;
+  margin-top: calc(var(--lettering-w) * 22 / 653);
+  animation: rise 0.9s var(--ease) 0.15s both;
+}
+
+/* Mobile frames: "Hi, I am" at 38px, name at 58px, 16px apart */
+@media (max-width: 767px) {
+  .lettering {
+    --lettering-w: 270px;
+  }
+
+  .lettering__hi {
+    width: 119px;
+  }
+
+  .lettering__name {
+    margin-top: 14px;
+  }
+}
